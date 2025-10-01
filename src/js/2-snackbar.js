@@ -1,8 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('.form');
-  if (!form) return;
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
-  form.addEventListener('submit', event => {
+// Перевіряємо чи ми на сторінці снекбара
+if (document.querySelector('.form')) {
+  const form = document.querySelector('.form');
+
+  form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const formData = new FormData(form);
@@ -11,17 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createPromise(delay, state)
       .then(delay => {
-        iziToast.success({
+        console.log(`✅ Fulfilled promise in ${delay}ms`);
+        iziToast.show({
           message: `✅ Fulfilled promise in ${delay}ms`,
-          position: 'topLeft',
+          position: 'topRight',
           timeout: 5000,
+          backgroundColor: '#4CAF50',
+          theme: 'dark',
+          progressBar: false,
+          close: false,
         });
       })
       .catch(delay => {
-        iziToast.error({
+        console.log(`❌ Rejected promise in ${delay}ms`);
+        iziToast.show({
           message: `❌ Rejected promise in ${delay}ms`,
-          position: 'topLeft',
+          position: 'topRight',
           timeout: 5000,
+          backgroundColor: '#F44336',
+          theme: 'dark',
+          progressBar: false,
+          close: false,
         });
       });
 
@@ -39,4 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }, delay);
     });
   }
-});
+}

@@ -1,9 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
-  if (!document.querySelector('#datetime-picker')) {
-    console.log('Timer script skipped: not on the timer page');
-    return;
-  }
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
+// Перевіряємо чи ми на сторінці таймера
+if (document.querySelector('#datetime-picker')) {
   let userSelectedDate = null;
   let timerId = null;
 
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 1000);
   }
 
+  // Ініціалізація flatpickr
   flatpickr(dateInput, {
     enableTime: true,
     time_24hr: true,
@@ -91,4 +93,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   startBtn.disabled = true;
-});
+}
