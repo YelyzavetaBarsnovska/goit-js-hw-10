@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
+  if (!form) return;
 
-  form.addEventListener('submit', function (event) {
+  form.addEventListener('submit', event => {
     event.preventDefault();
 
     const formData = new FormData(form);
@@ -10,29 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createPromise(delay, state)
       .then(delay => {
-        console.log(`✅ Fulfilled promise in ${delay}ms`);
-        iziToast.show({
+        iziToast.success({
           message: `✅ Fulfilled promise in ${delay}ms`,
-          position: 'topRight',
+          position: 'topLeft',
           timeout: 5000,
-          backgroundColor: '#4CAF50',
-          theme: 'dark',
-          progressBar: false,
-          close: false,
-          displayMode: 2,
         });
       })
       .catch(delay => {
-        console.log(`❌ Rejected promise in ${delay}ms`);
-        iziToast.show({
+        iziToast.error({
           message: `❌ Rejected promise in ${delay}ms`,
-          position: 'topRight',
+          position: 'topLeft',
           timeout: 5000,
-          backgroundColor: '#F44336',
-          theme: 'dark',
-          progressBar: false,
-          close: false,
-          displayMode: 2,
         });
       });
 

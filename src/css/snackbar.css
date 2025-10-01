@@ -21,6 +21,7 @@ body {
   width: 100%;
   max-width: 300px;
   border: 1px solid #ddd;
+  margin: 0 auto;
 }
 
 label {
@@ -86,6 +87,10 @@ button {
   font-weight: 400;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #e6e6e6;
 }
 
 .iziToast-message {
